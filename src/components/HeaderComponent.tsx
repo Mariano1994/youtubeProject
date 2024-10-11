@@ -8,7 +8,7 @@ import user from "../assets/user.svg";
 
 function HeaderComponent() {
   return (
-    <header className="grid grid-flow-col h-17 p-4 ">
+    <header className="grid grid-flow-col h-17 p-4 w-full fixed bg-white z-50 ">
       <div className="flex items-center gap-5 col-span-1">
         <Menu size={24} className="hover:cursor-pointer" />
         <img src={youtubeLogo} alt="youtube logo image" />

@@ -4,7 +4,10 @@ export default {
   theme: {
     extend: {
       gridTemplateColumns: {
-        app: "minmax(10rem, 16rem) 1fr",
+        app: "minmax(10rem, 14rem) 1fr",
+      },
+      fontFamily: {
+        app: "Roboto",
       },
     },
   },

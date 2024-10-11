@@ -1,6 +1,6 @@
 function MainVideosContent() {
   return (
-    <div className="bg-gray-600">
+    <div>
       <span>Main Video Content</span>
     </div>
   );
