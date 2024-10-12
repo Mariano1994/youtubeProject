@@ -6,11 +6,19 @@ import bellIcon from "../assets/bellicon.svg";
 import user from "../assets/user.svg";
 // import SearchIcon from "../assets/searchIcon.svg";
 
-function HeaderComponent() {
+interface ToggleMenuProps {
+  onToggleMenu: () => void;
+}
+
+function HeaderComponent({ onToggleMenu }: ToggleMenuProps) {
   return (
     <header className="grid grid-flow-col h-17 py-1 px-6 w-full fixed bg-white z-50 ">
       <div className="flex items-center gap-5 col-span-1">
-        <Menu size={24} className="hover:cursor-pointer" />
+        <Menu
+          size={24}
+          className="hover:cursor-pointer"
+          onClick={onToggleMenu}
+        />
         <img src={youtubeLogo} alt="youtube logo image" />
       </div>
       <div className="flex justify-center gap-3 items-center col-span-10 ">
