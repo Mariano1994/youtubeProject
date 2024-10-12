@@ -19,7 +19,7 @@ function Subscriptions(props: Props) {
       </div>
       <nav className="space-y-0.5 -mt-5">
         <SubscriptionChannel
-          title="Google Developer"
+          title="Google for Developer"
           icon={googleIcon}
           link="#"
         />
