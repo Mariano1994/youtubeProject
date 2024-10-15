@@ -15,7 +15,7 @@ function App() {
       <div className="grid gap-4 flex-1 ">
         <div className="flex mt-16 p-1 gap-3 ">
           <Sidebar isMenuExpanded={isMenuExpanded} />
-          <MainVideosContent />
+          <MainVideosContent isMenuExpanded={isMenuExpanded} />
         </div>
       </div>
     </div>

@@ -1,11 +1,15 @@
 import EasyLinks from "./EasyLinks";
 import VideosCards from "./VideosCards";
 
-function MainVideosContent() {
+interface MenuProps {
+  isMenuExpanded: boolean;
+}
+
+function MainVideosContent({ isMenuExpanded }: MenuProps) {
   return (
-    <div className="w-full ">
+    <div className="w-full ml-8">
       <EasyLinks />
-      <VideosCards />
+      <VideosCards isMenuExpanded={isMenuExpanded} />
     </div>
   );
 }
