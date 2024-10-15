@@ -6,7 +6,12 @@ interface ToggleMenuProps {
 }
 
 function Sidebar({ isMenuExpanded }: ToggleMenuProps) {
-  if (isMenuExpanded) return <ExpandedSideBar />;
+  if (isMenuExpanded)
+    return (
+      <div className="w-[280px]">
+        <ExpandedSideBar />
+      </div>
+    );
   return <CollapsedSideBar />;
 }
 

@@ -3,7 +3,7 @@ import VideosCards from "./VideosCards";
 
 function MainVideosContent() {
   return (
-    <div className="w-full">
+    <div className="w-full ">
       <EasyLinks />
       <VideosCards />
     </div>
