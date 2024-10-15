@@ -4,7 +4,6 @@ import MicIcon from "../assets/micIcon.svg";
 import createIcon from "../assets/createLogo.svg";
 import bellIcon from "../assets/bellicon.svg";
 import user from "../assets/user.svg";
-// import SearchIcon from "../assets/searchIcon.svg";
 
 interface ToggleMenuProps {
   onToggleMenu: () => void;

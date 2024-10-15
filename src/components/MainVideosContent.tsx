@@ -1,7 +1,10 @@
+import EasyLinks from "./EasyLinks";
+
 function MainVideosContent() {
   return (
     <div>
-      <span>Main Video Content</span>
+      <EasyLinks />
+      <div className="flex flex-wrap gap-2"></div>
     </div>
   );
 }
