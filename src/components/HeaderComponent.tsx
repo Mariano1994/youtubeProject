@@ -11,7 +11,7 @@ interface ToggleMenuProps {
 
 function HeaderComponent({ onToggleMenu }: ToggleMenuProps) {
   return (
-    <header className="grid grid-flow-col h-17 py-1 px-6 w-full fixed bg-white z-50 ">
+    <header className=" grid grid-flow-col h-17 py-1 pl-6 w-full fixed bg-white z-50 ">
       <div className="flex items-center gap-5 col-span-1">
         <Menu
           size={24}
@@ -42,7 +42,7 @@ function HeaderComponent({ onToggleMenu }: ToggleMenuProps) {
         <div className=" flex items-center justify-center h-11 w-11 rounded-full hover:bg-gray-100 hover:cursor-pointer">
           <img src={bellIcon} alt="bell-icon" />
         </div>
-        <div className="ml-2 hover:cursor-pointer">
+        <div className=" ml-2 hover:cursor-pointer">
           <img src={user} alt="user" />
         </div>
       </div>

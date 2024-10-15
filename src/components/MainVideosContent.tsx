@@ -1,10 +1,11 @@
 import EasyLinks from "./EasyLinks";
+import VideosCards from "./VideosCards";
 
 function MainVideosContent() {
   return (
-    <div>
+    <div className="w-full">
       <EasyLinks />
-      <div className="flex flex-wrap gap-2"></div>
+      <VideosCards />
     </div>
   );
 }
