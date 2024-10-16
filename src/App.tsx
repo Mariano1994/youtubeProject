@@ -14,7 +14,9 @@ function App() {
       <HeaderComponent onToggleMenu={handleToggleMenuState} />
       <div className="grid gap-4 flex-1 ">
         <div className="flex mt-16 p-1 gap-3 ">
-          <Sidebar isMenuExpanded={isMenuExpanded} />
+          <div className="h-full fixed">
+            <Sidebar isMenuExpanded={isMenuExpanded} />
+          </div>
           <MainVideosContent isMenuExpanded={isMenuExpanded} />
         </div>
       </div>
