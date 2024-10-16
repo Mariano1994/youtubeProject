@@ -4,19 +4,17 @@ import MicIcon from "../assets/micIcon.svg";
 import createIcon from "../assets/createLogo.svg";
 import bellIcon from "../assets/bellicon.svg";
 import user from "../assets/user.svg";
+import { useToggleMenu } from "../context/MenuContext";
 
-interface ToggleMenuProps {
-  onToggleMenu: () => void;
-}
-
-function HeaderComponent({ onToggleMenu }: ToggleMenuProps) {
+function HeaderComponent() {
+  const { handleToggleMenuState } = useToggleMenu();
   return (
     <header className=" grid grid-flow-col h-17 py-1 pl-6 w-full fixed bg-white z-50 ">
       <div className="flex items-center gap-5 col-span-1">
         <Menu
           size={24}
           className="hover:cursor-pointer"
-          onClick={onToggleMenu}
+          onClick={handleToggleMenuState}
         />
         <img src={youtubeLogo} alt="youtube logo image" />
       </div>
