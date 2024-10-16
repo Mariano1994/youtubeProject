@@ -1,15 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../App";
 import MainContent from "../components/MainContent";
+import WatchVideoPages from "../components/WatchVideoPages";
+import MainVideosContent from "../components/MainVideosContent";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <MainContent />,
     children: [
       {
         path: "/",
-        element: <MainContent />,
+        element: <MainVideosContent />,
+      },
+      {
+        path: "/watch",
+        element: <WatchVideoPages />,
       },
     ],
   },

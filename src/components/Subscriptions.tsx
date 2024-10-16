@@ -7,11 +7,7 @@ import cursoemvideoIcon from "../assets/cursoemvideo.jpg";
 import stanfordIcon from "../assets/stanford.jpg";
 import MitIcon from "../assets/mit.png";
 
-interface Props {}
-
-function Subscriptions(props: Props) {
-  const {} = props;
-
+function Subscriptions() {
   return (
     <>
       <div className=" py-2 px-3  font-semibold ">

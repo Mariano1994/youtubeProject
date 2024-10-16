@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
 import { YOUTUBE_API } from "../utils/conts";
-interface MenuProps {
-  isMenuExpanded: boolean;
-}
+import { useToggleMenu } from "../context/MenuContext";
 
-function VideosCards({ isMenuExpanded }: MenuProps) {
+function VideosCards() {
   const [videos, setVideos] = useState([]);
+  const { isMenuExpanded } = useToggleMenu();
 
   useEffect(() => {
     async function getVideos() {
