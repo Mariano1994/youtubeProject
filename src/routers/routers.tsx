@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import MainContent from "../components/MainContent";
 import WatchVideoPages from "../components/WatchVideoPages";
-import MainVideosContent from "../components/MainVideosContent";
+import MainContentWrapper from "../components/MainContentWrapper";
 
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <MainContent />,
+    element: <MainContentWrapper />,
     children: [
       {
         path: "/",
-        element: <MainVideosContent />,
+        element: <MainContent />,
       },
       {
         path: "/watch",
