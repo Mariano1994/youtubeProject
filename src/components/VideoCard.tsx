@@ -1,51 +1,15 @@
 import { Dot, EllipsisVertical } from "lucide-react";
+import { Link } from "react-router-dom";
+import { VideoProps } from "../utils/interfaces";
+import { useToggleMenu } from "../context/MenuContext";
 
 // import channleImage from "../assets/einerd.jpg";
 
-interface VideoProps {
-  video: {
-    id: string;
-    snippet: {
-      title: string;
-      channelTitle: string;
-      descriptoin: string;
-      publishedAt: string;
-      thumbnails: {
-        default: {
-          height: number;
-          url: string;
-          width: number;
-        };
-        high: {
-          height: number;
-          url: string;
-          width: number;
-        };
-        medium: {
-          height: number;
-          url: string;
-          width: number;
-        };
-        standard: {
-          height: number;
-          url: string;
-          width: number;
-        };
-      };
-    };
-    statistics: {
-      commentCount: string;
-      favoriteCount: string;
-      likeCount: string;
-      viewCount: string;
-    };
-  };
-  isMenuExpanded: boolean;
-}
-
-function VideoCard({ video, isMenuExpanded }: VideoProps) {
+function VideoCard({ video }: VideoProps) {
+  const { isMenuExpanded } = useToggleMenu();
   return (
-    <li
+    <Link
+      to="/watch"
       className={`group ${
         isMenuExpanded ? "max-w-[330px]" : "max-w-[276px]"
       }   hover:cursor-pointer mt-4 ml:max-w-[330px]`}
@@ -80,7 +44,7 @@ function VideoCard({ video, isMenuExpanded }: VideoProps) {
           className="text-gray-700 hover:cursor-pointer"
         />
       </div>
-    </li>
+    </Link>
   );
 }
 

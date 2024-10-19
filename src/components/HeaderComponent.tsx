@@ -16,7 +16,9 @@ function HeaderComponent() {
           className="hover:cursor-pointer"
           onClick={handleToggleMenuState}
         />
-        <img src={youtubeLogo} alt="youtube logo image" />
+        <a href="/">
+          <img src={youtubeLogo} alt="youtube logo image" />
+        </a>
       </div>
       <div className="flex justify-center gap-3 items-center col-span-10 ">
         <div className=" flex justify-center items-center w-[55%] rounded-full border border-xs overflow-hidden">
