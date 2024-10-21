@@ -9,7 +9,7 @@ function VideoCard({ video }: VideoProps) {
   const { isMenuExpanded } = useToggleMenu();
   return (
     <Link
-      to="/watch"
+      to={`/watch?v=${video.id}`}
       className={`group ${
         isMenuExpanded ? "max-w-[330px]" : "max-w-[276px]"
       }   hover:cursor-pointer mt-4 ml:max-w-[330px]`}

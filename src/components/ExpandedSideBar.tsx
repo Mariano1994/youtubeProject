@@ -16,7 +16,7 @@ function ExpandedSideBar() {
   return (
     <aside className="flex min-h-screen flex-col gap-6 mr-2 px-2">
       <nav className="space-y-0.5">
-        <NavItem title="Home" icon={HomeIcon} link="#" />
+        <NavItem title="Home" icon={HomeIcon} link="/" />
         <NavItem title="Shorts" icon={ShortsIcons} link="#" />
         <NavItem title="Subscriptions" icon={SubscriptionIcon} link="#" />
       </nav>

@@ -1,7 +1,9 @@
+import Sidebar from "./Sidebar";
+
 function WatchVideoPages() {
   return (
     <div>
-      <span>Mariano Capiliku</span>
+      <Sidebar />
     </div>
   );
 }
