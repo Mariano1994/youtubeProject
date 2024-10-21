@@ -6,12 +6,18 @@ import EinerdImage from "../assets/einerd.jpg";
 import bellImage from "../assets/bellicon.svg";
 import arrowRightIcon from "../assets/arrowRightIcon.svg";
 import likedIcon from "../assets/LikedVideos.svg";
-import shareIcon from "../assets/shareIcon.svg";
 import { ArrowLineDown, ShareFat } from "@phosphor-icons/react";
+import {
+  DateFormatterFns,
+  formatNumberToK,
+  truncatDescription,
+} from "../utils/helperFunctions";
+
 // import Sidebar from "./Sidebar";
 
 function WatchVideoPages() {
   const [video, setVideo] = useState<VideoIDPros>();
+  const [showAllDescription, setShowAllDescription] = useState(false);
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
 
@@ -27,11 +33,20 @@ function WatchVideoPages() {
 
     getVideo();
   }, []);
+
+  // Function to show all description info
+  const handleShowAllDescription = () => {
+    setShowAllDescription(true);
+  };
+  // Function to show less description info
+  const handleShowLessDescription = () => {
+    setShowAllDescription(false);
+  };
   return (
-    <div className=" flex items-start gap-6 ">
-      <div className="flex flex-col px-5 w-[970px] 2xl:w-[1350px]">
+    <div className=" flex items-start gap-6 mt-4">
+      <div className="flex flex-col px-5 w-[990px] 2xl:w-[1350px]">
         <iframe
-          className="rounded-2xl w-[970px] h-[560px] 2xl:w-[1350px] 2xl:h-[750px]"
+          className="rounded-2xl w-[950px] h-[560px] 2xl:w-[1300px] 2xl:h-[730px]"
           src={`https://www.youtube.com/embed/${videoId}`}
           title="YouTube video player"
           frameBorder="0"
@@ -42,7 +57,7 @@ function WatchVideoPages() {
 
         <div className="flex flex-col gap-2 mt-3">
           <span className="text-xl font-extrabold">{video?.snippet.title}</span>
-          <div className="flex items-center justify-between gap-3 ">
+          <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
               <img
                 src={EinerdImage}
@@ -58,7 +73,7 @@ function WatchVideoPages() {
                 </span>
               </div>
 
-              <div className="flex items-center py-2 px-4 gap-2 rounded-full bg-gray-100 ml-5 hover:bg-gray-200 hover:cursor-pointer">
+              <div className="flex items-center py-2 px-4 gap-2 rounded-full bg-gray-100 ml-4 hover:bg-gray-200 hover:cursor-pointer">
                 <img src={bellImage} alt="bells icon to subscribe to channel" />
                 <span className="text-sm font-semibold">Subscribed</span>
                 <img
@@ -69,11 +84,13 @@ function WatchVideoPages() {
               </div>
             </div>
 
-            <div className="flex items-center gap-2 ">
+            <div className="flex items-center gap-1 ">
               <div className="flex items-center  rounded-full bg-gray-100">
                 <div className="flex items-center py-2 px-4 gap-1 border-r rounded-l-full hover:bg-gray-200 hover:cursor-pointer">
                   <img src={likedIcon} alt="like button" />
-                  <span className="font-semibold text-sm">15K</span>
+                  <span className="font-semibold text-sm">
+                    {formatNumberToK(Number(video?.statistics.likeCount))}
+                  </span>
                 </div>
                 <div className="py-2 px-4 rounded-r-full hover:bg-gray-200 hover:cursor-pointer">
                   <img src={likedIcon} alt="" className=" rotate-180" />
@@ -94,6 +111,45 @@ function WatchVideoPages() {
               </div>
             </div>
           </div>
+        </div>
+
+        {/* Video Description */}
+        <div className="mt-4 w-full py-2 px-4  bg-gray-100 rounded-lg">
+          <span className="font-bold text-sm">
+            {Number(video?.statistics.viewCount) / 1000} views,
+          </span>
+          <span className="font-bold text-sm">
+            {" "}
+            {DateFormatterFns(new Date(), new Date())}
+          </span>
+
+          {!showAllDescription ? (
+            <p className="mt-1">
+              {truncatDescription(String(video?.snippet?.description), 250)}{" "}
+              <span
+                className="font-semibold hover:cursor-pointer"
+                onClick={handleShowAllDescription}
+              >
+                ...more
+              </span>
+            </p>
+          ) : (
+            <>
+              <p className="mt-1">{video?.snippet.description}</p>
+              <span
+                className="font-bold hover:cursor-pointer text-sm"
+                onClick={handleShowLessDescription}
+              >
+                Show less
+              </span>
+            </>
+          )}
+        </div>
+
+        {/* Comments */}
+
+        <div className="mt-4 text-[1.3rem] font-extrabold">
+          <span>{video?.statistics.commentCount} Comments</span>
         </div>
       </div>
 

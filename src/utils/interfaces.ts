@@ -4,7 +4,7 @@ export interface VideoProps {
     snippet: {
       title: string;
       channelTitle: string;
-      descriptoin: string;
+      description: string;
       publishedAt: string;
       thumbnails: {
         default: {
@@ -42,7 +42,7 @@ export interface VideoIDPros {
   snippet: {
     title: string;
     channelTitle: string;
-    descriptoin: string;
+    description: string;
     publishedAt: string;
     thumbnails: {
       default: {

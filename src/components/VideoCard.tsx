@@ -2,6 +2,7 @@ import { Dot, EllipsisVertical } from "lucide-react";
 import { Link } from "react-router-dom";
 import { VideoProps } from "../utils/interfaces";
 import { useToggleMenu } from "../context/MenuContext";
+import { formatNumberToK } from "../utils/helperFunctions";
 
 // import channleImage from "../assets/einerd.jpg";
 
@@ -34,7 +35,9 @@ function VideoCard({ video }: VideoProps) {
             {video.snippet.channelTitle}
           </span>
           <div className="flex text-sm font-semibold text-gray-500 items-center ">
-            <span>{Number(video.statistics.viewCount) / 1000} views</span>
+            <span>
+              {formatNumberToK(Number(video.statistics.viewCount))} views
+            </span>
             <Dot />
             <span> 8 hours ago</span>
           </div>
