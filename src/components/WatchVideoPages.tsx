@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MY_YOUTUBE_KEY } from "../utils/conts";
-import { VideoIDPros } from "../utils/interfaces";
-import EinerdImage from "../assets/einerd.jpg";
+import { ChannelProps, VideoIDPros } from "../utils/interfaces";
 import bellImage from "../assets/bellicon.svg";
 import arrowRightIcon from "../assets/arrowRightIcon.svg";
 import likedIcon from "../assets/LikedVideos.svg";
@@ -17,6 +16,7 @@ import {
 
 function WatchVideoPages() {
   const [video, setVideo] = useState<VideoIDPros>();
+  const [channel, setChennel] = useState<ChannelProps>();
   const [showAllDescription, setShowAllDescription] = useState(false);
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
@@ -28,11 +28,27 @@ function WatchVideoPages() {
       );
       const videoInfo = await videoData.json();
       setVideo(videoInfo.items[0]);
-      console.log(videoInfo.items[0]);
+      // console.log(videoInfo.items[0]);
     }
 
     getVideo();
   }, []);
+
+  const channelId = video?.snippet?.channelId;
+
+  useEffect(() => {
+    async function getChannelData() {
+      const channelDate = await fetch(
+        `https://youtube.googleapis.com/youtube/v3/channels?part=snippet%2CcontentDetails%2Cstatistics&id=${channelId}&key=${MY_YOUTUBE_KEY}`
+      );
+
+      const channelInfo = await channelDate.json();
+      setChennel(channelInfo.items[0]);
+      console.log(channelInfo.items[0]);
+    }
+
+    getChannelData();
+  }, [channelId]);
 
   // Function to show all description info
   const handleShowAllDescription = () => {
@@ -58,31 +74,39 @@ function WatchVideoPages() {
         <div className="flex flex-col gap-2 mt-3">
           <span className="text-xl font-extrabold">{video?.snippet.title}</span>
           <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <img
-                src={EinerdImage}
-                alt="channel logo"
-                className="w-11 h-11 rounded-full"
-              />
-              <div className="flex flex-col">
-                <span className="font-semibold">
-                  {video?.snippet.channelTitle}
-                </span>
-                <span className="text-xs font-medium text-gray-600 ">
-                  109k subscribers
-                </span>
-              </div>
-
-              <div className="flex items-center py-2 px-4 gap-2 rounded-full bg-gray-100 ml-4 hover:bg-gray-200 hover:cursor-pointer">
-                <img src={bellImage} alt="bells icon to subscribe to channel" />
-                <span className="text-sm font-semibold">Subscribed</span>
+            {channel && (
+              <div className="flex items-center gap-3">
                 <img
-                  src={arrowRightIcon}
-                  alt="arrow donw to show more option to subscribe"
-                  className=" rotate-90"
+                  src={channel.snippet?.thumbnails?.default?.url}
+                  alt="channel logo"
+                  className="w-11 h-11 rounded-full"
                 />
+                <div className="flex flex-col">
+                  <span className="font-semibold">
+                    {channel?.snippet.title}
+                  </span>
+                  <span className="text-xs font-medium text-gray-600 ">
+                    {formatNumberToK(
+                      Number(channel.statistics?.subscriberCount)
+                    )}{" "}
+                    subscribers
+                  </span>
+                </div>
+
+                <div className="flex items-center py-2 px-4 gap-2 rounded-full bg-gray-100 ml-4 hover:bg-gray-200 hover:cursor-pointer">
+                  <img
+                    src={bellImage}
+                    alt="bells icon to subscribe to channel"
+                  />
+                  <span className="text-sm font-semibold">Subscribed</span>
+                  <img
+                    src={arrowRightIcon}
+                    alt="arrow donw to show more option to subscribe"
+                    className=" rotate-90"
+                  />
+                </div>
               </div>
-            </div>
+            )}
 
             <div className="flex items-center gap-1 ">
               <div className="flex items-center  rounded-full bg-gray-100">
