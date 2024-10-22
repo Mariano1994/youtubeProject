@@ -1,6 +1,6 @@
 export interface VideoProps {
   video: {
-    id: string;
+    id?: string;
     snippet: {
       title: string;
       channelTitle: string;

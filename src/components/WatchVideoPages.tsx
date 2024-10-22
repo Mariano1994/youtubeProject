@@ -2,22 +2,18 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MY_YOUTUBE_KEY } from "../utils/conts";
 import { ChannelProps, VideoIDPros } from "../utils/interfaces";
-import bellImage from "../assets/bellicon.svg";
-import arrowRightIcon from "../assets/arrowRightIcon.svg";
 import likedIcon from "../assets/LikedVideos.svg";
 import { ArrowLineDown, ShareFat } from "@phosphor-icons/react";
-import {
-  DateFormatterFns,
-  formatNumberToK,
-  truncatDescription,
-} from "../utils/helperFunctions";
+import { formatNumberToK } from "../utils/helperFunctions";
+import ChannelDetails from "./ChannelDetails";
+import VideoInfo from "./VideoInfo";
 
 // import Sidebar from "./Sidebar";
 
 function WatchVideoPages() {
   const [video, setVideo] = useState<VideoIDPros>();
   const [channel, setChennel] = useState<ChannelProps>();
-  const [showAllDescription, setShowAllDescription] = useState(false);
+
   const [searchParams] = useSearchParams();
   const videoId = searchParams.get("v");
 
@@ -50,14 +46,6 @@ function WatchVideoPages() {
     getChannelData();
   }, [channelId]);
 
-  // Function to show all description info
-  const handleShowAllDescription = () => {
-    setShowAllDescription(true);
-  };
-  // Function to show less description info
-  const handleShowLessDescription = () => {
-    setShowAllDescription(false);
-  };
   return (
     <div className=" flex items-start gap-6 mt-4">
       <div className="flex flex-col px-5 w-[990px] 2xl:w-[1350px]">
@@ -74,39 +62,7 @@ function WatchVideoPages() {
         <div className="flex flex-col gap-2 mt-3">
           <span className="text-xl font-extrabold">{video?.snippet.title}</span>
           <div className="flex items-center justify-between">
-            {channel && (
-              <div className="flex items-center gap-3">
-                <img
-                  src={channel.snippet?.thumbnails?.default?.url}
-                  alt="channel logo"
-                  className="w-11 h-11 rounded-full"
-                />
-                <div className="flex flex-col">
-                  <span className="font-semibold">
-                    {channel?.snippet.title}
-                  </span>
-                  <span className="text-xs font-medium text-gray-600 ">
-                    {formatNumberToK(
-                      Number(channel.statistics?.subscriberCount)
-                    )}{" "}
-                    subscribers
-                  </span>
-                </div>
-
-                <div className="flex items-center py-2 px-4 gap-2 rounded-full bg-gray-100 ml-4 hover:bg-gray-200 hover:cursor-pointer">
-                  <img
-                    src={bellImage}
-                    alt="bells icon to subscribe to channel"
-                  />
-                  <span className="text-sm font-semibold">Subscribed</span>
-                  <img
-                    src={arrowRightIcon}
-                    alt="arrow donw to show more option to subscribe"
-                    className=" rotate-90"
-                  />
-                </div>
-              </div>
-            )}
+            {channel && <ChannelDetails channel={channel} />}
 
             <div className="flex items-center gap-1 ">
               <div className="flex items-center  rounded-full bg-gray-100">
@@ -138,37 +94,7 @@ function WatchVideoPages() {
         </div>
 
         {/* Video Description */}
-        <div className="mt-4 w-full py-2 px-4  bg-gray-100 rounded-lg">
-          <span className="font-bold text-sm">
-            {Number(video?.statistics.viewCount) / 1000} views,
-          </span>
-          <span className="font-bold text-sm">
-            {" "}
-            {DateFormatterFns(new Date(), new Date())}
-          </span>
-
-          {!showAllDescription ? (
-            <p className="mt-1">
-              {truncatDescription(String(video?.snippet?.description), 250)}{" "}
-              <span
-                className="font-semibold hover:cursor-pointer"
-                onClick={handleShowAllDescription}
-              >
-                ...more
-              </span>
-            </p>
-          ) : (
-            <>
-              <p className="mt-1">{video?.snippet.description}</p>
-              <span
-                className="font-bold hover:cursor-pointer text-sm"
-                onClick={handleShowLessDescription}
-              >
-                Show less
-              </span>
-            </>
-          )}
-        </div>
+        {video && <VideoInfo video={video} />}
 
         {/* Comments */}
 
