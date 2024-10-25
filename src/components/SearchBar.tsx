@@ -49,19 +49,21 @@ function SearchBar() {
         </div>
       </div>
 
-      <div className="fixed ml-[200px]  w-[494px] mt-[390px] py-2  bg-white  rounded-lg border border-sky-100 shadow-lg">
-        <ul className="w-[100%]">
-          {suggestions.map((suggest: string, index: number) => (
-            <li
-              key={index}
-              className="flex items-center gap-3 py-1 px-2 hover:bg-gray-100 w-full font-semibold"
-            >
-              <MagnifyingGlass size={23} weight="thin" />
-              {suggest}
-            </li>
-          ))}
-        </ul>
-      </div>
+      {suggestions.length > 1 ? (
+        <div className="fixed ml-[200px]  w-[494px] mt-[390px] py-2  bg-white  rounded-lg border border-sky-100 shadow-lg">
+          <ul className="w-[100%]">
+            {suggestions.map((suggest: string, index: number) => (
+              <li
+                key={index}
+                className="flex items-center gap-3 py-1 px-2 hover:bg-gray-100 w-full font-semibold"
+              >
+                <MagnifyingGlass size={23} weight="thin" />
+                {suggest}
+              </li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
     </div>
   );
 }
