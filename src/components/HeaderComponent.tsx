@@ -1,5 +1,4 @@
 import youtubeLogo from "../assets/youtubeLogo.svg";
-import MicIcon from "../assets/micIcon.svg";
 import createIcon from "../assets/createLogo.svg";
 import bellIcon from "../assets/bellicon.svg";
 import user from "../assets/user.svg";
@@ -22,12 +21,9 @@ function HeaderComponent() {
           <img src={youtubeLogo} alt="youtube logo image" />
         </a>
       </div>
-      <div className="flex justify-center gap-3 items-center col-span-10 ">
-        <SearchBar />
-        <div className=" flex items-center justify-center bg-gray-100 h-10 w-10 rounded-full hover:cursor-pointer hover:bg-gray-200">
-          <img src={MicIcon} alt="mic icon" />
-        </div>
-      </div>
+
+      <SearchBar />
+
       <div className="flex items-center col-span-1 gap-2">
         <div className=" flex items-center justify-center h-11 w-11 rounded-full hover:bg-gray-100 hover:cursor-pointer">
           <img src={createIcon} alt="video camera icon" />
