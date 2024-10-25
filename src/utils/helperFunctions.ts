@@ -13,12 +13,10 @@ export const DateFormatterFns = (firstDate: any, secondDate: any) => {
 };
 
 export const formatNumberToK = (num: number) => {
-  if (num >= 1000) {
-    return (num / 1000).toFixed(0) + "k";
-  }
-
-  if (num >= 1000000) {
-    return (num / 1000000).toFixed(0) + "M";
+  if (num >= 1_000_000) {
+    return (num / 1_000_000).toFixed(1).replace(/\.0$/, "") + "M";
+  } else if (num >= 1_000) {
+    return (num / 1_000).toFixed(1).replace(/\.0$/, "") + "k";
   }
   return num.toString();
 };
