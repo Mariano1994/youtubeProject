@@ -57,7 +57,7 @@ function ChannelDetails({ channel }: ChannelProps) {
         <img
           src={arrowRightIcon}
           alt="arrow donw to show more option to subscribe"
-          className=" rotate-90"
+          className=" rotate-90 "
         />
       </div>
     </div>
