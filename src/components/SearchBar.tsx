@@ -6,6 +6,7 @@ import MicIcon from "../assets/micIcon.svg";
 function SearchBar() {
   const [searchQuery, setSeachQuery] = useState("");
   const [suggestions, setSuggestions] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   useEffect(() => {
     async function getSuggestionData() {
@@ -37,6 +38,8 @@ function SearchBar() {
             type="text"
             value={searchQuery}
             onChange={onHandleQuery}
+            onFocus={() => setShowSuggestions(true)}
+            onBlur={() => setShowSuggestions(false)}
             placeholder="Search"
             className="w-[100%]  px-4 outline-none rounded-full  font-light"
           />
@@ -49,7 +52,7 @@ function SearchBar() {
         </div>
       </div>
 
-      {suggestions.length > 1 ? (
+      {suggestions.length > 1 && showSuggestions ? (
         <div className="fixed ml-[200px]  w-[494px] mt-[390px] py-2 2xl:w-[700px] 2xl:ml-[290px]  bg-white  rounded-lg border border-sky-100 shadow-lg">
           <ul className="w-[100%]">
             {suggestions.map((suggest: string, index: number) => (
