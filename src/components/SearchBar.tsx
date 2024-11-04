@@ -53,7 +53,7 @@ function SearchBar() {
       </div>
 
       {suggestions.length > 1 && showSuggestions ? (
-        <div className="fixed ml-[200px]  w-[494px] mt-[390px] py-2 2xl:w-[700px] 2xl:ml-[290px]  bg-white  rounded-lg border border-sky-100 shadow-lg">
+        <div className="fixed ml-[200px]  w-[31rem] mt-[390px] py-2 2xl:w-[44.5rem] 2xl:ml-[290px]  bg-white  rounded-lg border border-sky-100 shadow-lg">
           <ul className="w-[100%]">
             {suggestions.map((suggest: string, index: number) => (
               <li
