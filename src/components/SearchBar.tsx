@@ -1,34 +1,10 @@
 import { MagnifyingGlass } from "@phosphor-icons/react";
-import { useEffect, useState } from "react";
-import { YOUTUBE_SEARCH_SUGGESTIONS_API } from "../utils/conts";
+import { useState } from "react";
 import MicIcon from "../assets/micIcon.svg";
-
+import { useSearchSuggestions } from "../context/SearchContext";
 function SearchBar() {
-  const [searchQuery, setSeachQuery] = useState("");
-  const [suggestions, setSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
-
-  useEffect(() => {
-    async function getSuggestionData() {
-      const suggestionData = await fetch(
-        `${YOUTUBE_SEARCH_SUGGESTIONS_API}${searchQuery}`
-      );
-      const suggestionsInfo = await suggestionData.json();
-      setSuggestions(suggestionsInfo[1]);
-    }
-
-    const timer = setTimeout(() => {
-      getSuggestionData();
-    }, 200);
-
-    return () => {
-      clearTimeout(timer);
-    };
-  }, [searchQuery]);
-
-  const onHandleQuery = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setSeachQuery(event.target.value);
-  };
+  const { suggestions, onHandleQuery, searchQuery } = useSearchSuggestions();
 
   return (
     <div className="flex flex-col col-span-10 justify-center   ">
