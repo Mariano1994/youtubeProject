@@ -7,6 +7,7 @@ import { ArrowLineDown, ShareFat } from "@phosphor-icons/react";
 import { formatNumberToK } from "../utils/helperFunctions";
 import ChannelDetails from "./ChannelDetails";
 import VideoInfo from "./VideoInfo";
+import CommnentsSection from "./CommnentsSection";
 
 // import Sidebar from "./Sidebar";
 
@@ -96,9 +97,8 @@ function WatchVideoPages() {
         {video && <VideoInfo video={video} />}
 
         {/* Comments */}
-
-        <div className="mt-4 text-[1.3rem] font-extrabold">
-          <span>{video?.statistics.commentCount} Comments</span>
+        <div className="mt-5 text-[1.2rem] font-extrabold">
+          {video && <CommnentsSection video={video} />}
         </div>
       </div>
 
