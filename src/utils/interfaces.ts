@@ -106,3 +106,9 @@ export interface ChannelProps {
     viewCount: string;
   };
 }
+
+export interface CommentsProps {
+  id: string;
+  userName: string;
+  comment: string;
+}
