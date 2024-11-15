@@ -1,20 +1,22 @@
-import { Smiley } from "@phosphor-icons/react";
-import { User } from "lucide-react";
+import { Smiley, User } from "@phosphor-icons/react";
 import { useState } from "react";
-import { CommentsProps } from "../utils/interfaces";
 import EmojiPicker from "emoji-picker-react";
+import { useComments } from "../context/CommentsContext";
 
 function AddNewComment() {
   const [showNewCommentInput, setShowNewCommentInput] = useState(false);
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
-  const [comment, setCommenst] = useState<CommentsProps>();
+  const [comment, setComment] = useState("");
 
-  const handleAddNewComment = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setCommenst({
-      id: "snkgk",
-      userName: "Mariano",
-      comment: event.target.value,
-    });
+  const { handlerAddNewComment } = useComments();
+
+  const onInputNewComment = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setComment(event.target.value);
+  };
+
+  const handlerAddNewCommentInfo = () => {
+    handlerAddNewComment(comment);
+    setComment("");
   };
 
   return (
@@ -25,8 +27,8 @@ function AddNewComment() {
       <div className=" w-full">
         <input
           type="text"
-          value={comment?.comment}
-          onChange={handleAddNewComment}
+          value={comment}
+          onChange={onInputNewComment}
           placeholder="Add a comment..."
           onFocus={() => setShowNewCommentInput(true)}
           className="w-full  border-b-[1.4px] border-gray-500  outline-none py-2 placeholder:text-gray-400 text-black"
@@ -62,11 +64,10 @@ function AddNewComment() {
                 Cancel
               </button>
               <button
-                disabled={!comment?.comment ? true : false}
+                onClick={handlerAddNewCommentInfo}
+                disabled={!comment ? true : false}
                 className={`py-2 px-4  rounded-full text-gray-400 font-bold disabled:cursor-not-allowed ${
-                  comment?.comment
-                    ? "text-white bg-blue-600 hover:bg-blue-700"
-                    : null
+                  comment ? "text-white bg-blue-600 hover:bg-blue-700" : null
                 }`}
               >
                 Comment

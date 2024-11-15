@@ -40,7 +40,7 @@ function WatchVideoPages() {
       );
 
       const channelInfo = await channelDate.json();
-      setChennel(channelInfo.items[0]);
+      setChennel(channelInfo?.items[0]);
     }
 
     getChannelData();
