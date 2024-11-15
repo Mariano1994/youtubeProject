@@ -10,7 +10,17 @@ interface ChildrenPros {
 
 interface CommentsPropsData {
   comments: any;
-  handlerAddNewComment: React.Dispatch<React.SetStateAction<string>>;
+  handlerAddNewComment: React.Dispatch<
+    React.SetStateAction<
+      {
+        id: string;
+        userimage: string;
+        username: string;
+        comment: string;
+        repleis: never[];
+      }[]
+    >
+  >;
 }
 
 export const CommentsContext = createContext<CommentsPropsData>({
@@ -28,13 +38,16 @@ export function CommentContextProvider({ children }: ChildrenPros) {
   const [comments, setComments] = useState(commentsInfo);
 
   const handlerAddNewComment = (data: any) => {
-    setComments(() => [
+    const username = faker.person.fullName();
+    const userimage = faker.image.avatar();
+
+    setComments([
       {
         id: crypto.randomUUID(),
-        username: faker.person.fullName(),
-        userimage: faker.image.avatar(),
+        username: username,
+        userimage: userimage,
         comment: data,
-        replies: [],
+        repleis: [],
       },
       ...comments,
     ]);

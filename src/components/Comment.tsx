@@ -1,18 +1,5 @@
 import { ThumbsDown, ThumbsUp, User } from "@phosphor-icons/react";
 
-interface CommnetProps {
-  id: string;
-  Username: string;
-  comment: string;
-  replays: {
-    id: string;
-    Username: string;
-    comment: string;
-  }[];
-  size?: number;
-}
-[];
-
 function Comment({ comment, size }: any) {
   return (
     <div className="flex gap-2 items-start mt-5 w-full text-sm font-normal -mb-1">
