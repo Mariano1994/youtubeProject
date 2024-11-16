@@ -19,17 +19,8 @@ interface CommentsPropsData {
       comment: string;
     }[];
   }[];
-  handlerAddNewComment: React.Dispatch<
-    React.SetStateAction<
-      {
-        id: string;
-        userimage: string;
-        username: string;
-        comment: string;
-        repleis: never[];
-      }[]
-    >
-  >;
+  handlerAddNewComment: React.Dispatch<React.SetStateAction<string>>;
+  handlerAddNewReply: any;
 }
 
 export const CommentsContext = createContext<CommentsPropsData>({
@@ -42,11 +33,13 @@ export const CommentsContext = createContext<CommentsPropsData>({
     },
   ],
   handlerAddNewComment: () => {},
+  handlerAddNewReply: () => {},
 });
 
 export function CommentContextProvider({ children }: ChildrenPros) {
   const [comments, setComments] = useState(commentsData);
 
+  // FUNCTION DO ADD NEW COMMENT
   const handlerAddNewComment = (data: any) => {
     setComments([
       {
@@ -60,8 +53,32 @@ export function CommentContextProvider({ children }: ChildrenPros) {
     ]);
   };
 
+  // FUNCTION TO ADD REPLY
+  const handlerAddNewReply = (id: string, data: string) => {
+    const reply = comments.map((comment) =>
+      comment.id === id
+        ? {
+            ...comment,
+            replies: [
+              {
+                id: crypto.randomUUID(),
+                username: faker.person.fullName(),
+                userimage: faker.image.avatar(),
+                comment: data,
+              },
+              ...comment.repleis,
+            ],
+          }
+        : comment
+    );
+
+    setComments(reply);
+  };
+
   return (
-    <CommentsContext.Provider value={{ comments, handlerAddNewComment }}>
+    <CommentsContext.Provider
+      value={{ comments, handlerAddNewComment, handlerAddNewReply }}
+    >
       {children}
     </CommentsContext.Provider>
   );

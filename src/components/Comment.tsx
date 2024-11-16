@@ -1,9 +1,16 @@
 import { ThumbsDown, ThumbsUp } from "@phosphor-icons/react";
 import { CommentProps } from "../utils/interfaces";
+import { useState } from "react";
+import AddNewReply from "./AddNewReply";
 
 function Comment({ comment, size }: CommentProps) {
+  const [reply, setReply] = useState(false);
+
+  const handleAddReply = () => {
+    setReply(true);
+  };
   return (
-    <div className="flex gap-2 items-start mt-5 w-full text-sm font-normal -mb-1">
+    <div className=" flex gap-2 items-start mt-5 w-full text-sm font-normal -mb-1">
       <img
         src={comment.userimage}
         height={size}
@@ -31,12 +38,18 @@ function Comment({ comment, size }: CommentProps) {
             <ThumbsDown weight="thin" size={24} />
           </div>
 
-          <span className="items-center justify-center py-1 px-2 hover:bg-gray-200 rounded-full flex font-bold cursor-pointer ml-2 text-center  ">
+          <span
+            onClick={handleAddReply}
+            className="items-center justify-center py-1 px-2 hover:bg-gray-200 rounded-full flex font-bold cursor-pointer ml-2 text-center  "
+          >
             Reply
           </span>
         </div>
-
-        {/* <AddNewComment /> */}
+        {reply && (
+          <div className="w-full">
+            <AddNewReply onCancelReply={setReply} commentId={comment.id} />
+          </div>
+        )}
       </div>
     </div>
   );

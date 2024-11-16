@@ -48,7 +48,7 @@ function AddNewComment() {
               {showEmojiPicker && (
                 <div className="absolute">
                   <EmojiPicker
-                    height={350}
+                    height={400}
                     reactionsDefaultOpen
                     allowExpandReactions
                   />
