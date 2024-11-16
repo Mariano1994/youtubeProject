@@ -107,8 +107,18 @@ export interface ChannelProps {
   };
 }
 
-export interface CommentsProps {
-  id: string;
-  userName: string;
-  comment: string;
+export interface CommentProps {
+  comment: {
+    id: string;
+    username: string;
+    userimage: string;
+    comment: string;
+    replies?: {
+      id: string;
+      username: string;
+      userimage: string;
+      comment: string;
+    }[];
+  };
+  size?: number;
 }

@@ -2,14 +2,23 @@ import { createContext, useContext, useState } from "react";
 import { commentsData } from "../utils/commentsMockData";
 import { faker } from "@faker-js/faker";
 
-const commentsInfo = commentsData;
-
 interface ChildrenPros {
   children: React.ReactNode;
 }
 
 interface CommentsPropsData {
-  comments: any;
+  comments: {
+    id: string;
+    username: string;
+    userimage: string;
+    comment: string;
+    replies?: {
+      id: string;
+      username: string;
+      userimage: string;
+      comment: string;
+    }[];
+  }[];
   handlerAddNewComment: React.Dispatch<
     React.SetStateAction<
       {
@@ -24,28 +33,26 @@ interface CommentsPropsData {
 }
 
 export const CommentsContext = createContext<CommentsPropsData>({
-  comments: {
-    id: "",
-    username: "",
-    userimage: "",
-    comment: "",
-    replies: [],
-  },
+  comments: [
+    {
+      id: "",
+      userimage: "",
+      username: "",
+      comment: "",
+    },
+  ],
   handlerAddNewComment: () => {},
 });
 
 export function CommentContextProvider({ children }: ChildrenPros) {
-  const [comments, setComments] = useState(commentsInfo);
+  const [comments, setComments] = useState(commentsData);
 
   const handlerAddNewComment = (data: any) => {
-    const username = faker.person.fullName();
-    const userimage = faker.image.avatar();
-
     setComments([
       {
         id: crypto.randomUUID(),
-        username: username,
-        userimage: userimage,
+        username: faker.person.fullName(),
+        userimage: faker.image.avatar(),
         comment: data,
         repleis: [],
       },

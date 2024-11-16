@@ -1,17 +1,16 @@
-import { ThumbsDown, ThumbsUp, User } from "@phosphor-icons/react";
+import { ThumbsDown, ThumbsUp } from "@phosphor-icons/react";
+import { CommentProps } from "../utils/interfaces";
 
-function Comment({ comment, size }: any) {
+function Comment({ comment, size }: CommentProps) {
   return (
     <div className="flex gap-2 items-start mt-5 w-full text-sm font-normal -mb-1">
-      <div className=" px-2 py-2 rounded-full  flex items-center justify-center">
-        <img
-          src={comment.userimage}
-          height={50}
-          width={50}
-          alt="userimage"
-          className=" rounded-full"
-        />
-      </div>
+      <img
+        src={comment.userimage}
+        height={size}
+        width={size}
+        alt="userimage"
+        className=" rounded-full"
+      />
 
       <div className="flex flex-col gap-2">
         <div className="flex items-center gap-1">

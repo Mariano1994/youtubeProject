@@ -7,11 +7,11 @@ function CommentsList() {
     <div>
       {comments.map((comment: any) => (
         <div key={comment.id}>
-          <Comment comment={comment} size={22} />
+          <Comment comment={comment} size={43} />
           <div className="ml-12">
             {comment.replies &&
               comment.replies.map((reply: any) => (
-                <Comment key={reply.id} comment={reply} size={10} />
+                <Comment key={reply.id} comment={reply} size={22} />
               ))}
           </div>
         </div>
