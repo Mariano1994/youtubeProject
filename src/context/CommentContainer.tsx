@@ -1,7 +1,11 @@
 import CommentsList from "../components/CommentsList";
 
 function CommentContainer() {
-  return <CommentsList />;
+  return (
+    <div className="w-full">
+      <CommentsList />
+    </div>
+  );
 }
 
 export default CommentContainer;

@@ -4,15 +4,18 @@ import { MenuContextProvider } from "./context/MenuContext.tsx";
 import App from "./App.tsx";
 import { SearchContextProvider } from "./context/SearchContext.tsx";
 import { CommentContextProvider } from "./context/CommentsContext.tsx";
+import { VideoContextProvider } from "./context/VideosContext.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <CommentContextProvider>
-      <SearchContextProvider>
-        <MenuContextProvider>
-          <App />
-        </MenuContextProvider>
-      </SearchContextProvider>
-    </CommentContextProvider>
+    <VideoContextProvider>
+      <CommentContextProvider>
+        <SearchContextProvider>
+          <MenuContextProvider>
+            <App />
+          </MenuContextProvider>
+        </SearchContextProvider>
+      </CommentContextProvider>
+    </VideoContextProvider>
   </StrictMode>
 );

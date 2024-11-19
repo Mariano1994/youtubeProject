@@ -53,7 +53,7 @@ export function CommentContextProvider({ children }: ChildrenPros) {
     ]);
   };
 
-  // FUNCTION TO ADD REPLY
+  // FUNCTION TO ADD REPLY IN A COMMENT
   const handlerAddNewReply = (id: string, data: string) => {
     const reply = comments.map((comment) =>
       comment.id === id

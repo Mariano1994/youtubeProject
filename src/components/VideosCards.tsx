@@ -1,24 +1,9 @@
-import { useEffect, useState } from "react";
 import VideoCard from "./VideoCard";
-import { YOUTUBE_API } from "../utils/conts";
 import ShimmerUIWrapper from "./ShimmerUIWrapper";
+import { useVideos } from "../context/VideosContext";
 
 function VideosCards() {
-  const [videos, setVideos] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
-
-  useEffect(() => {
-    async function getVideos() {
-      setIsLoading(true);
-      const response = await fetch(YOUTUBE_API);
-      const data = await response.json();
-      setVideos(data.items);
-
-      setIsLoading(false);
-    }
-
-    getVideos();
-  }, []);
+  const { videos, isLoading } = useVideos();
 
   if (isLoading)
     return (

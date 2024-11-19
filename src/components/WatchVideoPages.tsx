@@ -8,6 +8,7 @@ import { formatNumberToK } from "../utils/helperFunctions";
 import ChannelDetails from "./ChannelDetails";
 import VideoInfo from "./VideoInfo";
 import CommnentsSection from "./CommnentsSection";
+import VideosSuggestions from "./VideosSuggestions";
 
 // import Sidebar from "./Sidebar";
 
@@ -47,7 +48,7 @@ function WatchVideoPages() {
   }, [channelId]);
 
   return (
-    <div className=" flex items-start gap-6 mt-4">
+    <div className=" flex items-start gap-6 mt-4 w-full">
       <div className="flex flex-col px-5 w-[990px] 2xl:w-[1350px]">
         <iframe
           className="rounded-2xl w-[950px] h-[560px] 2xl:w-[1300px] 2xl:h-[730px]"
@@ -97,14 +98,11 @@ function WatchVideoPages() {
         {video && <VideoInfo video={video} />}
 
         {/* Comments */}
-        <div className="mt-5 text-[1.2rem] font-extrabold">
+        <div className="mt-5 text-[1.2rem] font-extrabold w-full">
           {video && <CommnentsSection video={video} />}
         </div>
       </div>
-
-      <div>
-        <span>Suggestions</span>
-      </div>
+      <VideosSuggestions />
     </div>
   );
 }

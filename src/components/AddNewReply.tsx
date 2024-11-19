@@ -20,17 +20,17 @@ function AddNewReply({ onCancelReply, commentId }: any) {
   };
 
   return (
-    <div className="flex gap-2 items-start mt-5 w-full text-sm font-normal ">
+    <div className="flex gap-2 items-start mt-5 w-full text-sm font-normal  ">
       <div className="w-12 h-11 rounded-full bg-gray-200 flex items-center justify-center shadow-sm">
         <User size={22} />
       </div>
-      <div className=" w-full">
+      <div className=" w-[100%]">
         <input
           type="text"
           value={reply}
           onChange={onInputNewReply}
           placeholder="Add a reply..."
-          className="w-full  border-b-[1.4px] border-gray-500  outline-none py-2 placeholder:text-gray-400 text-black"
+          className="w-[100%]  border-b-[1.4px] border-gray-500  outline-none py-2 placeholder:text-gray-400 text-black"
         />
 
         <div className=" mt-4 flex items-center justify-between mb-2">
