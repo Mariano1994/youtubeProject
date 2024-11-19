@@ -1,6 +1,6 @@
-import CommentContainer from "../context/CommentContainer";
 import { VideoProps } from "../utils/interfaces";
 import AddNewComment from "./AddNewComment";
+import CommentsList from "./CommentsList";
 
 function CommnentsSection({ video }: VideoProps) {
   return (
@@ -8,7 +8,7 @@ function CommnentsSection({ video }: VideoProps) {
       {/* Comments count */}
       <span>{video?.statistics.commentCount} Comments</span>
       <AddNewComment />
-      <CommentContainer />
+      <CommentsList />
     </div>
   );
 }

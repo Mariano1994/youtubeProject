@@ -13,7 +13,7 @@ function VideosSuggestions() {
     );
 
   return (
-    <ul className="flex flex-col">
+    <ul className="flex flex-col -mt-4">
       {videos?.map((video: any) => (
         <VideoCardSuggestions video={video} key={video.id} />
       ))}
