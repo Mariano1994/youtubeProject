@@ -1,8 +1,23 @@
+import { useVideos } from "../context/VideosContext";
+import ShimmerUIWrapper from "./ShimmerUIWrapper";
+import VideoCardSuggestions from "./VideoCardSuggestions";
+
 function VideosSuggestions() {
+  const { videos, isLoading } = useVideos();
+
+  if (isLoading)
+    return (
+      <ul className=" mt-10 flex flex-wrap gap-4">
+        <ShimmerUIWrapper />
+      </ul>
+    );
+
   return (
-    <div>
-      <span>Videos suggetions</span>
-    </div>
+    <ul className="flex flex-col">
+      {videos?.map((video: any) => (
+        <VideoCardSuggestions video={video} key={video.id} />
+      ))}
+    </ul>
   );
 }
 

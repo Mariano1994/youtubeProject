@@ -24,7 +24,7 @@ function HeaderComponent() {
 
       <SearchBar />
 
-      <div className="flex items-center col-span-1 gap-2">
+      <div className="flex items-center col-span-1 gap-2 -mr-12">
         <div className=" flex items-center justify-center h-11 w-11 rounded-full hover:bg-gray-100 hover:cursor-pointer">
           <img src={createIcon} alt="video camera icon" />
         </div>

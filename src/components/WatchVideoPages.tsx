@@ -48,7 +48,7 @@ function WatchVideoPages() {
   }, [channelId]);
 
   return (
-    <div className=" flex items-start gap-6 mt-4 w-full">
+    <div className=" flex items-start  mt-4 w-full">
       <div className="flex flex-col px-5 w-[990px] 2xl:w-[1350px]">
         <iframe
           className="rounded-2xl w-[950px] h-[560px] 2xl:w-[1300px] 2xl:h-[730px]"
