@@ -3,6 +3,7 @@ import LiveChatMessage from "./LiveChatMessage";
 import { faker } from "@faker-js/faker";
 import { LiveCommentsLimit } from "../utils/conts";
 import { HeartStraight, PaperPlaneRight, X } from "@phosphor-icons/react";
+import userImage from "../assets/user.svg";
 
 interface LiveChatMessage {
   id: string;
@@ -36,7 +37,7 @@ function LiveChat() {
     setChatMessages([
       {
         id: crypto.randomUUID(),
-        userimage: faker.image.avatar(),
+        userimage: userImage,
         message: data,
       },
       ...chatMessages,
