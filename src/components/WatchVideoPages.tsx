@@ -9,6 +9,7 @@ import ChannelDetails from "./ChannelDetails";
 import VideoInfo from "./VideoInfo";
 import CommnentsSection from "./CommnentsSection";
 import VideosSuggestions from "./VideosSuggestions";
+import LiveChat from "./LiveChat";
 
 // import Sidebar from "./Sidebar";
 
@@ -97,12 +98,15 @@ function WatchVideoPages() {
         {/* Video Description */}
         {video && <VideoInfo video={video} />}
 
-        {/* Comments */}
+        {/* Comments Sections */}
         <div className="mt-5 text-[1.2rem] font-extrabold w-full">
           {video && <CommnentsSection video={video} />}
         </div>
       </div>
-      <VideosSuggestions />
+      <div className="flex flex-col gap-6">
+        <LiveChat />
+        <VideosSuggestions />
+      </div>
     </div>
   );
 }
