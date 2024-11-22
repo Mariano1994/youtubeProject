@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react";
 import { commentsData } from "../utils/commentsMockData";
-import { faker } from "@faker-js/faker";
+import userImage from "../assets/user.svg";
 
 interface ChildrenPros {
   children: React.ReactNode;
@@ -44,8 +44,8 @@ export function CommentContextProvider({ children }: ChildrenPros) {
     setComments([
       {
         id: crypto.randomUUID(),
-        username: faker.person.fullName(),
-        userimage: faker.image.avatar(),
+        username: "Mariano Capiliku",
+        userimage: userImage,
         comment: data,
         repleis: [],
       },
@@ -62,8 +62,8 @@ export function CommentContextProvider({ children }: ChildrenPros) {
             replies: [
               {
                 id: crypto.randomUUID(),
-                username: faker.person.fullName(),
-                userimage: faker.image.avatar(),
+                username: "Mariano Capiliku",
+                userimage: userImage,
                 comment: data,
               },
               ...comment.repleis,

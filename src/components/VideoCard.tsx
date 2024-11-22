@@ -2,11 +2,11 @@ import { Dot, EllipsisVertical } from "lucide-react";
 import { Link } from "react-router-dom";
 import { VideoProps } from "../utils/interfaces";
 import { useToggleMenu } from "../context/MenuContext";
-import { formatNumberToK } from "../utils/helperFunctions";
-
-// import channleImage from "../assets/einerd.jpg";
+import { DateFormatterFns, formatNumberToK } from "../utils/helperFunctions";
+import { faker } from "@faker-js/faker";
 
 function VideoCard({ video }: VideoProps) {
+  const date = faker.date.anytime();
   const { isMenuExpanded } = useToggleMenu();
   return (
     <Link
@@ -23,12 +23,6 @@ function VideoCard({ video }: VideoProps) {
         className="rounded-2xl group-hover:rounded-none"
       />
       <div className="flex items-start gap-2 mt-3 ">
-        {/* <img
-          src={channleImage}
-          alt="channeImahe"
-          className="h-10 w-10 rounded-full "
-        /> */}
-
         <div className="flex flex-col flex-1">
           <span className="font-bold text-lg mb-1 ">{video.snippet.title}</span>
           <span className="text-sm font-semibold text-gray-500">
@@ -39,7 +33,7 @@ function VideoCard({ video }: VideoProps) {
               {formatNumberToK(Number(video.statistics.viewCount))} views
             </span>
             <Dot />
-            <span> 8 hours ago</span>
+            {DateFormatterFns(date, new Date())}
           </div>
         </div>
         <EllipsisVertical

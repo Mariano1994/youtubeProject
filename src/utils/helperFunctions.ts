@@ -6,7 +6,7 @@ export const DateFormatter = new Intl.DateTimeFormat("en", {
   day: "2-digit",
 });
 
-export const DateFormatterFns = (firstDate: any, secondDate: any) => {
+export const DateFormatterFns = (firstDate: Date, secondDate: Date) => {
   return formatDistance(subDays(new Date(firstDate), 0), new Date(secondDate), {
     addSuffix: true,
   });

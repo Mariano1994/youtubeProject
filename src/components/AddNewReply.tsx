@@ -1,8 +1,9 @@
 import React from "react";
-import { Smiley, User } from "@phosphor-icons/react";
+import { Smiley } from "@phosphor-icons/react";
 import { useState } from "react";
 import EmojiPicker from "emoji-picker-react";
 import { useComments } from "../context/CommentsContext";
+import userImage from "../assets/user.svg";
 
 function AddNewReply({ onCancelReply, commentId }: any) {
   const [showEmojiPicker, setShowEmojiPicker] = useState(false);
@@ -21,9 +22,8 @@ function AddNewReply({ onCancelReply, commentId }: any) {
 
   return (
     <div className="flex gap-2 items-start mt-5 w-full text-sm font-normal  ">
-      <div className="w-12 h-11 rounded-full bg-gray-200 flex items-center justify-center shadow-sm">
-        <User size={22} />
-      </div>
+      <img src={userImage} alt="user image" width={45} />
+
       <div className=" w-[100%]">
         <input
           type="text"

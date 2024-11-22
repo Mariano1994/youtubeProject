@@ -2,9 +2,12 @@ import { ThumbsDown, ThumbsUp } from "@phosphor-icons/react";
 import { CommentProps } from "../utils/interfaces";
 import { useState } from "react";
 import AddNewReply from "./AddNewReply";
+import { DateFormatterFns } from "../utils/helperFunctions";
+import { faker } from "@faker-js/faker";
 
 function Comment({ comment, size }: CommentProps) {
   const [reply, setReply] = useState(false);
+  const date = faker.date.anytime();
 
   const handleAddReply = () => {
     setReply(true);
@@ -24,7 +27,10 @@ function Comment({ comment, size }: CommentProps) {
           <span className="font-bold text-sm text-black">
             @{comment?.username}
           </span>
-          <span className="text-xs text-gray-500"> 32 minutes ago</span>
+          <span className="text-xs text-gray-500">
+            {" "}
+            {DateFormatterFns(date, new Date())}
+          </span>
         </div>
         <p className="text-black f">{comment?.comment}</p>
         <div className="flex items-center gap-2">

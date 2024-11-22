@@ -1,9 +1,15 @@
 import { Dot, EllipsisVertical } from "lucide-react";
 import { Link } from "react-router-dom";
 import { VideoProps } from "../utils/interfaces";
-import { formatNumberToK, truncatDescription } from "../utils/helperFunctions";
+import {
+  DateFormatterFns,
+  formatNumberToK,
+  truncatDescription,
+} from "../utils/helperFunctions";
+import { faker } from "@faker-js/faker";
 
 function VideoCardSuggestions({ video }: VideoProps) {
+  const date = faker.date.anytime();
   return (
     <Link
       to={`/watch?v=${video.id}`}
@@ -30,7 +36,7 @@ function VideoCardSuggestions({ video }: VideoProps) {
               {formatNumberToK(Number(video.statistics.viewCount))} views
             </span>
             <Dot />
-            <span> 8 hours ago</span>
+            <span> {DateFormatterFns(date, new Date())}</span>
           </div>
         </div>
         <EllipsisVertical
