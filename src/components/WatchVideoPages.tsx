@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { MY_YOUTUBE_KEY } from "../utils/conts";
 import { ChannelProps, VideoIDPros } from "../utils/interfaces";
-import likedIcon from "../assets/LikedVideos.svg";
 import { ArrowLineDown, ShareFat } from "@phosphor-icons/react";
 import { formatNumberToK } from "../utils/helperFunctions";
 import ChannelDetails from "./ChannelDetails";
@@ -10,8 +9,7 @@ import VideoInfo from "./VideoInfo";
 import CommnentsSection from "./CommnentsSection";
 import VideosSuggestions from "./VideosSuggestions";
 import LiveChat from "./LiveChat";
-
-// import Sidebar from "./Sidebar";
+import likedIcon from "../assets/LikedVideos.svg";
 
 function WatchVideoPages() {
   const [video, setVideo] = useState<VideoIDPros>();
@@ -27,7 +25,6 @@ function WatchVideoPages() {
       );
       const videoInfo = await videoData.json();
       setVideo(videoInfo.items[0]);
-      // console.log(videoInfo.items[0]);
     }
 
     getVideo();

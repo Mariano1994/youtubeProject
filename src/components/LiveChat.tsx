@@ -24,11 +24,11 @@ function LiveChat() {
         {
           id: crypto.randomUUID(),
           userimage: faker.image.avatar(),
-          message: faker.word.words({ count: { min: 10, max: 20 } }),
+          message: faker.word.words({ count: { min: 5, max: 10 } }),
         },
         ...chatMessages,
       ]);
-    }, 1000);
+    }, 1500);
 
     return () => clearInterval(polligData);
   }, [chatMessages]);
@@ -48,7 +48,8 @@ function LiveChat() {
     setNewChatMessage(event.target.value);
   };
 
-  const handlerAddNewChatMessage = () => {
+  const handlerAddNewChatMessage = (event: any) => {
+    event.preventDefault();
     AddNewChatMesssage(newChatMessage);
     setNewChatMessage("");
   };
@@ -77,7 +78,10 @@ function LiveChat() {
               <LiveChatMessage chatMessage={chat} key={chat.id} />
             ))}
           </div>
-          <div className="flex items-center gap-1 py-3 px-2 border-t border-t-solid border-t-gray-200  ">
+          <form
+            onSubmit={handlerAddNewChatMessage}
+            className="flex items-center gap-1 py-3 px-2 border-t border-t-solid border-t-gray-200  "
+          >
             <input
               type="text"
               value={newChatMessage}
@@ -88,7 +92,6 @@ function LiveChat() {
 
             <button
               className="p-2 rounded-full flex items-center justify-center hover:bg-gray-100 disabled:cursor-not-allowed"
-              onClick={handlerAddNewChatMessage}
               disabled={newChatMessage ? false : true}
             >
               {newChatMessage ? (
@@ -97,7 +100,7 @@ function LiveChat() {
                 <HeartStraight size={23} weight="thin" />
               )}
             </button>
-          </div>
+          </form>
         </div>
       ) : (
         <button
