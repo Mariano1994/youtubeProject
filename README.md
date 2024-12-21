@@ -16,9 +16,9 @@ This is a functional youtube clone app, built using reactJs with Typescript. The
 ## Features
 In this project is possible to use some of main youtube features, like:
 
--- Using the official youtube API, it is possible to fetch most popular videos from youtube and display it on the app
--- You can wacth a especific video
--- You can add comments to any vidoe 
+- Using the official youtube API, it is possible to fetch most popular videos from youtube and display it on the app
+- You can wacth a especific video
+- You can add comments to any vidoe 
 -- You can add replays to a comments
 -- Optmized search bar with suggestion, usging cache techniques 
 -- Live chat simulation, and comment on live chat...
